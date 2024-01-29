@@ -152,7 +152,7 @@ void loop() {
   //Serial.println("tic");
   if(millis()<Temps_Initialisation)// Pour éviter tout problème au démarage, le robot ne démare 
   {                                //qu'au bout de 5 secondes et les variables de départ sont rappelées
-    Initialisation();//(voir ligne 237)
+    Initialisation();//(voir ligne 464)
     //Serial.println("INITIALISE");
     Depart=false; //Le booléen "Depart" permet de bloquer les moteurs, le robot ne bouge pas
     Temps_Depart=millis(); //Il lance un chrono quand il part
@@ -325,7 +325,7 @@ void STRATEGIE_1()
 }
 
 //Cette fonction permet de déplacer le robot aléatoirement dans le labyrinthe, il peut ainsi parcourir le milieu de celui-ci
-//Il utilise directement les capeurs de distance et pilote les moteurs grâce aux fonctions de déplacement qui lui sont propres (voir lignes 998 à 1026)
+//Il utilise directement les capeurs de distance et pilote les moteurs grâce aux fonctions de déplacement qui lui sont propres (voir lignes 999 à 1027)
 void Bouge_Aleatoire()
 {
   distfaceG=analogRead(PROX_SENSOR_FL_PIN);
@@ -351,11 +351,11 @@ void Bouge_Aleatoire()
   }
 }
 
-//Cette fonction permet de construire une simulation des couleurs des cases du labyrinthe et de la mémoriser (voit ligne 56 à 69 pour les variables)
-//Le tableau "Labyrinthe" (ligne 59) est compléter au fure et à mesure que le robot longe le mur de gauche
+//Cette fonction permet de construire une simulation des couleurs des cases du labyrinthe et de la mémoriser (voit ligne 59 à 77 pour les variables)
+//Le tableau "Labyrinthe" (ligne 62) est compléter au fure et à mesure que le robot longe le mur de gauche
 //La fonction utilise les réponses des deux fonctions "Longe_mur_gauche" via les variables "etatX" et la réponse
 // à la fonction "Voir_Quadrillage" via les variables "Objet_dessousX"
-//Il y a aussi le tableau "LabyMur" (ligne 77) qui indique la position des murs dans le labyrinthe. Il est également compléter en direct.
+//Il y a aussi le tableau "LabyMur" (ligne 76) qui indique la position des murs dans le labyrinthe. Il est également compléter en direct.
 //Cette fonction est le coeur de notre travail, elle est aussi très complexe, c'est pour cela qu'il y a un fichier pour décrire son fonctionnement.
 void Construire_Tour_Labyrinthe()
 {
@@ -367,7 +367,7 @@ void Construire_Tour_Labyrinthe()
   //PrintQueQuandCaChangeCoordonnees();
   
   //Pour être en intéraction avec les simulations du Labyrinthe, plusieurs petites fonctions ont été créées pour
-  // se déplacer, entrer les variables.... (voir lignes 245 à 685)
+  // se déplacer, entrer les variables.... (voir lignes 487 à 683)
   if((etat2==COIN)&&(etat2!=etat1)) //si le robot est dans un coin c'est qu'il va tourner à droite
   {
     Tourne_Droite_Labyrinthe();
@@ -683,8 +683,8 @@ void PasMur_en_face_LabyMur()
 }
 
 //Cette fonction permet au robot de longer le mur à sa gauche
-//Il utilise les valeur des capteur (positionés à sa gauche et devant) pour se repérer et appele les fonctions de mouvements (voir ligne 298)
-//Elle renvoie également une variable "etat2" qui permet d'indiquer les actions que fait le robot (voir lignes 19 à 31 pour les variables)
+//Il utilise les valeurs des capteur (positionés à sa gauche et devant) pour se repérer et appele les fonctions de mouvements (voir ligne 904)
+//Elle renvoie également une variable "etat2" qui permet d'indiquer les actions que fait le robot (voir lignes 19 à 35 pour les variables)
 void Longe_mur_gauche()
 {
   distfaceG=analogRead(PROX_SENSOR_FL_PIN);
@@ -808,7 +808,7 @@ void Longe_mur_droite()
 
 //Cette fonction permet de savoir si le robot est sur une case ou une ligne, et de quelle couleur elle est.
 //Cette fonction utilise la réponse de la fonction "Estime_couleur" et utilise la fonction "millis()" pour savoir si c'est une ligne ou une case
-//Elle donne enfin un nom à la variable "Objet_dessous" (voir lignes 45 à 53 pour les variables).
+//Elle donne enfin un nom à la variable "Objet_dessous" (voir lignes 47 à 57 pour les variables).
 void Voir_Quadrillage()
 {
   Estime_Couleur();
@@ -873,7 +873,7 @@ void Voir_Quadrillage()
 }
 
 //Cette fonction permet d'identifier la couleur qui est sous le robot grâce au capteur
-// de couleur. Cette fonction donne un etat à la variable "couleur_case2" (voir lignes 35 à 44 pour les variables)
+// de couleur. Cette fonction donne un etat à la variable "couleur_case2" (voir lignes 37 à 46 pour les variables)
 // Cette fonction utilise des seuils pour déterminer la couleur.
 void Estime_Couleur()
 {
